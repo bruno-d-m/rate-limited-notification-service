@@ -1,0 +1,5 @@
+{
+    "status": {"limit": 2, "period": "minute"},
+    "news": {"limit": 1, "period": "day"},
+    "marketing": {"limit": 3, "period": "hour"}
+}

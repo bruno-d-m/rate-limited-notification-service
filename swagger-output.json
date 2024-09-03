@@ -1,0 +1,315 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Modak",
+    "description": "Coding challenge for Modak Makers"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/settings/": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "summary": "Returns all rate limit rules",
+        "description": "Returns all rate limit rules",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/setOfRules"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Settings"
+        ],
+        "summary": "Deletes all rate limit rules",
+        "description": "Deletes all rate limit rules",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/confirmDeletion"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/settings/{type}": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "summary": "Returns a rate limit rule by its name",
+        "description": "Returns a rate limit rule by its name",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/setOfRules"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Settings"
+        ],
+        "summary": "Creates a new rate limit rule",
+        "description": "Creates a new rate limit rule",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rule"
+                }
+              }
+            },
+            "description": "Created"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/rule"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Settings"
+        ],
+        "summary": "Updates a rate limit rule",
+        "description": "Updates a rate limit rule",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rule"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/rule"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Settings"
+        ],
+        "summary": "Deletes a rate limit rule",
+        "description": "Deletes a rate limit rule",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/confirmDeletion"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/notify/{userId}": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Sends a notification to a user",
+        "description": "Sends a notification to a user",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/confirmNotification"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/notification"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "rule": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "example": 1
+          },
+          "period": {
+            "type": "string",
+            "example": "second"
+          }
+        },
+        "required": [
+          "limit",
+          "period"
+        ]
+      },
+      "setOfRules": {
+        "type": "object",
+        "properties": {
+          "rule-1": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "number",
+                "example": 1
+              },
+              "period": {
+                "type": "string",
+                "example": "second"
+              }
+            }
+          },
+          "rule-2": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "number",
+                "example": 1
+              },
+              "period": {
+                "type": "string",
+                "example": "minute"
+              }
+            }
+          }
+        }
+      },
+      "confirmDeletion": {
+        "type": "string",
+        "example": "A message confirming the deletion"
+      },
+      "notification": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "news"
+          },
+          "message": {
+            "type": "string",
+            "example": "This is a notification message"
+          },
+          "urgent": {
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "required": [
+          "type",
+          "message"
+        ]
+      },
+      "confirmNotification": {
+        "type": "string",
+        "example": "A message confirming the notification was sent"
+      }
+    }
+  }
+}

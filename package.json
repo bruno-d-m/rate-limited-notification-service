@@ -1,0 +1,24 @@
+{
+  "name": "rate-limited-notification-service",
+  "version": "1.0.0",
+  "description": "This is a REST API built to use and maintain a rate limited notification service",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest",
+    "build": "npm install",
+    "swagger": "node swagger.js"
+  },
+  "author": "Bruno Martins",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "memory-cache": "^0.2.0",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "swagger-autogen": "^2.23.7"
+  }
+}
