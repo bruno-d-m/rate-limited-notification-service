@@ -70,8 +70,6 @@ app.post('/settings/:type', (req,res) => {
     */
 
     const type = req.params.type
-    // const limit = req.body?.limit
-    // const period = req.body?.period
     const {limit, period} = req.body
     /* 
         #swagger.requestBody = {
@@ -109,8 +107,6 @@ app.put('/settings/:type', (req,res) => {
     */
 
     const type = req.params.type
-    // const limit = req.body?.limit
-    // const period = req.body?.period
     const {limit, period} = req.body
     /* 
         #swagger.requestBody = {
@@ -194,9 +190,6 @@ app.post('/notify/:userId', (req, res) => {
     */
 
     const userId = req.params.userId
-    // const type = req.body?.type
-    // const message = req.body?.message
-    // const urgent = req.body?.urgent
     const {type, message, urgent} = req.body
     /* 
         #swagger.requestBody = {
