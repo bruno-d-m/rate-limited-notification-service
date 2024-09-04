@@ -6,6 +6,8 @@ const errorMessages = {
     409: "Rules for the given type are already set"
 }
 
+const acceptedPeriods = ['second', 'minute', 'hour', 'day']
+
 const getAll = () => {
     return {
         status: 200,
@@ -29,7 +31,7 @@ const getOne = (type) => {
 }
 
 const create = (type, limit, period) => {
-    if(!limit || !period || limit == "" || limit < 1 || period == ""){
+    if(!limit || !period || limit == "" || limit < 1 || period == "" || !acceptedPeriods.includes(period)){
         return {
             status: 400,
             message: errorMessages[400]
@@ -51,7 +53,7 @@ const create = (type, limit, period) => {
 }
 
 const update = (type, limit, period) => {
-    if(!limit || !period || limit == "" || limit < 1 || period == ""){
+    if(!limit || !period || limit == "" || limit < 1 || period == "" || !acceptedPeriods.includes(period)){
         return {
             status: 400,
             message: errorMessages[400]
